@@ -24,6 +24,7 @@ sudo mkdir -p /mnt/hdds/media
 # Plex Media Folders
 sudo mkdir -p /mnt/hdds/media/anime
 sudo mkdir -p /mnt/hdds/media/anime-movies
+sudo mkdir -p /mnt/hdds/media/documentaries
 sudo mkdir -p /mnt/hdds/media/cartoons
 sudo mkdir -p /mnt/hdds/media/cartoon-movies
 sudo mkdir -p /mnt/hdds/media/movies
