@@ -1,0 +1,16 @@
+services:
+  plex:
+    image: ghcr.io/hotio/plex   # Ensure you're using the latest image here
+    container_name: plex
+    environment:
+      - PUID=${PLEXUID}             # Ensure PUID is set in your .env file
+      - PGID=${PLEXGID}             # Ensure PGID is set in your .env file
+      - PLEX_CLAIM_TOKEN=${PLEX_CLAIM_TOKEN}  # Ensure you have the claim token
+      - TZ=America/Denver             # Set your timezone if needed
+    volumes:
+      - /mnt/ssd/docker/plex/config:/config       # Plex config folder
+      - /mnt/ssd/docker/plex/transcode:/transcode  # Plex transcode folder
+      - /mnt/hdds/media:/media                     # Shared media folder
+    ports:
+      - "32400:32400"  # Plex port
+    restart: unless-stopped  # Auto restart Plex unless stopped manually
