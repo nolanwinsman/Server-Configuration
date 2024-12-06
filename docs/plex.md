@@ -52,7 +52,7 @@ You might not need to the `--env-file` flag but it seems to run more consistentl
 
 Assuming the docker-compose worked properly, 
 
-Connect to Plex [http://<server-ip>:32400/web](http://<server-ip>:32400/web)
+Connect to Plex [http://<server-ip>:32400/web](http://server-ip:32400/web)
 
 Then you should be connected to Plex where you can configure the rest
 
