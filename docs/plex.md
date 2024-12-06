@@ -6,7 +6,7 @@ This is the docker-compose file that worked for me. Based off of [https://hotio.
 
 I put this file inside my `/home/nolan/docker/plex/` folder and named it `docker-compose.yml`
 
-## [.env file](env.txt)
+## [.env file](../docker/plex/env.txt)
 
 Copy my `env.txt` file and rename the filename to `.env`
 
