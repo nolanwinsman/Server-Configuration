@@ -10,3 +10,7 @@ I'm setting up a server using Proxmox to host a virtual machine (VM) running Ubu
 ## 2: [Create Ubuntu Server VM](docs/ubuntu_vm_setup.md)
 
 ## 3: [ZFS Setup on Proxmox and Ubuntun VM](docs/zfs_setup.md)
+
+## 4: [Setup Docker on Ubuntu VM](docs/docker_setup.md)
+
+## 5: [Qbittorrent Docker Setup with VPN](docs/)

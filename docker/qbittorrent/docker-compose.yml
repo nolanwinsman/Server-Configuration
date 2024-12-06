@@ -1,0 +1,33 @@
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    image: ghcr.io/hotio/qbittorrent
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - PUID=568
+      - PGID=568
+      - UMASK=002
+      - TZ=America/New_York
+      - WEBUI_PORTS=8080/tcp,8080/udp
+      - VPN_ENABLED=true
+      - VPN_CONF=wg0
+      - VPN_PROVIDER=generic
+      - VPN_LAN_NETWORK=10.0.0.0/24 # This must be correct for you
+      - VPN_EXPOSE_PORTS_ON_LAN
+      - VPN_AUTO_PORT_FORWARD=false
+      - VPN_AUTO_PORT_FORWARD_TO_PORTS=5687
+      - VPN_KEEP_LOCAL_DNS=false
+      - VPN_FIREWALL_TYPE=auto
+      - PRIVOXY_ENABLED=false
+      - UNBOUND_ENABLED=false
+      - WEBUI_HOST=0.0.0.0  # This binds qBittorrent to all interfaces
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    volumes:
+      - /mnt/ssd/docker/qbittorrent:/config # where qbittorrent config folder is stored. Wireguard folder is /qbittorrent/wireguard/
+      - /mnt/ssd/torrents:/torrents # where torrents get downloaded to 
