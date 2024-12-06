@@ -13,4 +13,4 @@ I'm setting up a server using Proxmox to host a virtual machine (VM) running Ubu
 
 ## 4: [Setup Docker on Ubuntu VM](docs/docker_setup.md)
 
-## 5: [Qbittorrent Docker Setup with VPN](docs/)
+## 5: [Qbittorrent Docker Setup with VPN](docs/qbittorrent.md)
