@@ -5,7 +5,7 @@ I'm setting up a server using Proxmox to host a virtual machine (VM) running Ubu
 
 # Configuration Steps
 
-## 1: Install Proxmox
+## 1: [Install Proxmox](https://www.proxmox.com/en/proxmox-virtual-environment/get-started)
 
 ## 2: [Create Ubuntu Server VM](docs/ubuntu_vm_setup.md)
 
@@ -14,3 +14,5 @@ I'm setting up a server using Proxmox to host a virtual machine (VM) running Ubu
 ## 4: [Setup Docker on Ubuntu VM](docs/docker_setup.md)
 
 ## 5: [Qbittorrent Docker Setup with VPN](docs/qbittorrent.md)
+
+## 6: [Plex Setup](docs/plex.md)
