@@ -59,7 +59,7 @@ For my `zfs.conf` file, I had
 options zfs zfs_arc_max=6717177856
 ```
 
-I want to replace `6717177856` to `34359738368` since I want to use 32 GB of my RAM for caching. You need to but the number in bytes. Use [This Website](https://convertermaniacs.com/gigabyte-to-byte/convert-32-gb-to-bytes.html) to convert whatever GB you want to bytes
+I want to replace `6717177856` to `34359738368` since I want to use 32 GB of my RAM for caching. You need to put the number in bytes. Use [This Website](https://convertermaniacs.com/gigabyte-to-byte/convert-32-gb-to-bytes.html) to convert whatever GB you want to bytes
 
 ```sh
 options zfs zfs_arc_max=34359738368
