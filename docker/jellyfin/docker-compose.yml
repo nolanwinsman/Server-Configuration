@@ -1,0 +1,34 @@
+services:
+  app:
+    image: jellyfin/jellyfin:latest
+    hostname: container-name.internal
+    environment:
+      - VPN_ENABLED=true
+      - VPN_CONF=wg0
+      - VPN_PROVIDER=generic
+      - VPN_LAN_NETWORK=10.0.0.0/24
+      - VPN_LAN_LEAK_ENABLED=false
+      # Uncomment and configure if needed:
+      # - VPN_EXPOSE_PORTS_ON_LAN=8096,8920
+      - VPN_AUTO_PORT_FORWARD=false
+      - VPN_AUTO_PORT_FORWARD_TO_PORTS=
+      - VPN_KEEP_LOCAL_DNS=false
+      - VPN_FIREWALL_TYPE=auto
+      - VPN_HEALTHCHECK_ENABLED=false
+      - PRIVOXY_ENABLED=false
+      - UNBOUND_ENABLED=false
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - /mnt/ssd/docker/jellyfin/config:/config
+      - /mnt/ssd/docker/jellyfin/transcode:/transcode
+      - /mnt/hdds/media:/media
+    ports:
+      - 8096:8096 # Jellyfin Web UI
+      - 8920:8920 # Secure Web UI (optional)
+    restart: unless-stopped
