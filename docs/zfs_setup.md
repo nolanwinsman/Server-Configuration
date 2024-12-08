@@ -47,6 +47,32 @@ Apply the export settings
 exportfs -a
 ```
 
+Edit `zfs.conf` file to increase RAM caching for zfs pool.
+
+```sh
+vim /etc/modprobe.d/zfs.conf
+```
+
+For my `zfs.conf` file, I had
+
+```
+options zfs zfs_arc_max=6717177856
+```
+
+I want to replace `6717177856` to `34359738368` since I want to use 32 GB of my RAM for caching. You need to but the number in bytes. Use [This Website](https://convertermaniacs.com/gigabyte-to-byte/convert-32-gb-to-bytes.html) to convert whatever GB you want to bytes
+
+```sh
+options zfs zfs_arc_max=34359738368
+```
+
+Apply the changes
+
+```sh
+update-initramfs -u
+```
+
+Then reboot the system
+
 #### Mount the ZFS Pool in the Ubuntu VM
 
 1. Install NFS Client on Ubuntu VM
@@ -65,6 +91,7 @@ sudo mkdir /mnt/hdds
 
 ```sh
 sudo mount <Proxmox_IP>:/pool /mnt/hdds
+
 ```
 
 4. Automate the Mount on Boot
@@ -75,7 +102,8 @@ sudo vim /etc/fstab
 
 
 ```sh
-<Proxmox_IP>:/pool /mnt/hdds nfs defaults 0 0
+# Proxmox nfs Mount
+<Proxmox_IP>:/pool /mnt/hdds nfs4 defaults,rsize=1048576,wsize=1048576,timeo=14,intr 0 0
 ```
 
 5. Verify the Mount
