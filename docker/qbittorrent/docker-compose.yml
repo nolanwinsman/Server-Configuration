@@ -9,7 +9,7 @@ services:
       - PUID=568
       - PGID=568
       - UMASK=002
-      - TZ=America/New_York
+      - TZ=America/Denver
       - WEBUI_PORTS=8080/tcp,8080/udp
       - VPN_ENABLED=true
       - VPN_CONF=wg0
@@ -31,3 +31,4 @@ services:
     volumes:
       - /mnt/ssd/docker/qbittorrent:/config # where qbittorrent config folder is stored. Wireguard folder is /qbittorrent/wireguard/
       - /mnt/ssd/torrents:/torrents # where torrents get downloaded to 
+      - /mnt/hdds/docker/qbittorrent/downloads:/completed # where completed torrents move to
