@@ -1,7 +1,7 @@
 services:
   app:
     image: jellyfin/jellyfin:latest
-    hostname: container-name.internal
+    hostname: <container-name>.internal # Change to your container name (must be lowercase)
     environment:
       - VPN_ENABLED=true
       - VPN_CONF=wg0
