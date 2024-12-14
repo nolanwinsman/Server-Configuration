@@ -1,0 +1,75 @@
+version: "3.2"
+services:
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 7878:7878
+    environment:
+      # Set user and group IDs to match the server's user
+      - PUID=568
+      - PGID=568
+      # Set the timezone to Denver (Mountain Time Zone)
+      - TZ=America/Denver
+    volumes:
+      # Mount the system's local time for correct timezone handling
+      - /etc/localtime:/etc/localtime:ro
+      # Configuration files for Radarr stored in SSD for faster access
+      - /mnt/ssd/docker/radarr:/config
+      # Directory for downloads
+      - /mnt/hdds/downloads:/downloads # downloads folder
+      # Directory for final media files (HDD for larger storage)
+      - /mnt/hdds/media:/media
+      # Directory for hardlinked media for continued seeding
+      # - /mnt/hdds/docker/qbittorrent/downloads:/target
+
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 8989:8989
+    environment:
+      # Set user and group IDs to match the server's user
+      - PUID=568
+      - PGID=568
+      # Set the timezone to Denver (Mountain Time Zone)
+      - TZ=America/Denver
+    volumes:
+      # Mount the system's local time for correct timezone handling
+      - /etc/localtime:/etc/localtime:ro
+      # Configuration files for Sonarr stored in SSD for faster access
+      - /mnt/ssd/docker/sonarr:/config
+      # Directory for downloads
+      - /mnt/hdds/downloads:/downloads # downloads folder
+      # Directory for final media files (HDD for larger storage)
+      - /mnt/hdds/media:/media
+      # Directory for hardlinked media for continued seeding
+      # - /mnt/hdds/docker/qbittorrent/downloads:/target
+
+  bazarr:
+    container_name: bazarr
+    image: ghcr.io/hotio/bazarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 6767:6767
+    environment:
+      # Set user and group IDs to match the server's user
+      - PUID=568
+      - PGID=568
+      # Set the timezone to Denver (Mountain Time Zone)
+      - TZ=America/Denver
+    volumes:
+      # Mount the system's local time for correct timezone handling
+      - /etc/localtime:/etc/localtime:ro
+      # Configuration files for Bazarr stored in SSD for faster access
+      - /mnt/ssd/docker/bazarr:/config
+      # Directory for final media files (HDD for larger storage)
+      - /mnt/hdds/media:/media

@@ -3,8 +3,8 @@ services:
     image: ghcr.io/hotio/plex   # Ensure you're using the latest image here
     container_name: plex
     environment:
-      - PUID=${PLEXUID}             # Ensure PUID is set in your .env file
-      - PGID=${PLEXGID}             # Ensure PGID is set in your .env file
+      - PUID=568             # Ensure PUID is set in your .env file
+      - PGID=568             # Ensure PGID is set in your .env file
       - PLEX_CLAIM_TOKEN=${PLEX_CLAIM_TOKEN}  # Ensure you have the claim token
       - TZ=America/Denver             # Set your timezone if needed
     volumes:

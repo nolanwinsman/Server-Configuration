@@ -1,0 +1,30 @@
+services:
+  app:
+    hostname: prowlarr.local
+    environment:
+      - VPN_ENABLED=false # Disable VPN if not needed
+      - VPN_CONF=wg0 # Replace if VPN is used
+      - VPN_PROVIDER=generic
+      - VPN_LAN_NETWORK=10.0.0.0/24 # Update to your LAN
+      - VPN_LAN_LEAK_ENABLED=false
+      - VPN_EXPOSE_PORTS_ON_LAN=true
+      - VPN_AUTO_PORT_FORWARD=false
+      - VPN_KEEP_LOCAL_DNS=false
+      - VPN_FIREWALL_TYPE=auto
+      - VPN_HEALTHCHECK_ENABLED=false
+      - PRIVOXY_ENABLED=false
+      - UNBOUND_ENABLED=false
+    ports:
+      - "9696:9696" # Port for Prowlarr
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    volumes:
+      - /mnt/ssd/docker/prowlarr/config:/config
+    devices:
+      - /dev/net/tun:/dev/net/tun # Optional if VPN is not needed
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
