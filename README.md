@@ -3,7 +3,7 @@ I'm setting up a server using Proxmox to host a virtual machine (VM) running Ubu
 
 # Legal Disclaimer:
 
-This server setup is intended for legal use only. The use of this system to download, share, or distribute copyrighted content without authorization is strictly prohibited. Users are solely responsible for the content they access, upload, and share through this server. By using this server, you agree to comply with all applicable local, state, and international laws governing copyright, intellectual property, and digital media. Unauthorized distribution of copyrighted materials may result in legal consequences. Please ensure that you have the necessary rights or permissions to download, share, and use the content on this system.
+This server setup is intended for legal use only. The use of this system to download, share, or distribute copyrighted content without authorization is strictly prohibited. Users are solely responsible for the content they access, upload, and share through this server. By using this documentation, you agree to comply with all applicable local, state, and international laws governing copyright, intellectual property, and digital media. Unauthorized distribution of copyrighted materials may result in legal consequences. Please ensure that you have the necessary rights or permissions to download, share, and use the content on your system.
 
 ## [Server Specs](docs/server_specs.md)
 
