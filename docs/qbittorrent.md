@@ -51,6 +51,32 @@ username: admin
 password: <temporary password>
 ```
 
-Now go to Settings --> Downloads --> Authentication
+Now go to Settings --> WebUI --> Authentication
 
 then change your password
+
+## Setting Where Completed Torrents Go
+
+Inside my docker compose, I have the 
+
+
+## Fixing Permissions
+
+Doing these exact commands for both `/mnt/hdds/docker/qbittorrent/downloads` and `/mnt/ssd/docker/qbittorrent/downloads`
+
+In particular, I had a ton of issues getting the torrents to download or move to the `/mnt/hdds/` directory
+
+```sh
+sudo chown -R 568:568 /mnt/ssd/docker/qbittorrent/
+sudo chmod -R 755 /mnt/ssd/docker/qbittorrent/
+```
+
+```sh
+sudo chown -R 568:568 /mnt/hdds/docker/qbittorrent/
+sudo chmod -R 755 /mnt/hdds/docker/qbittorrent/
+```
+
+```sh
+docker exec -it qbittorrent chown -R 568:568 /mnt/hdds/docker/qbittorrent/downloads
+docker exec -it qbittorrent chmod -R 777 /mnt/hdds/docker/qbittorrent/downloads
+```

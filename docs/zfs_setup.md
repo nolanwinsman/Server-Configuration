@@ -59,10 +59,10 @@ For my `zfs.conf` file, I had
 options zfs zfs_arc_max=6717177856
 ```
 
-I want to replace `6717177856` to `34359738368` since I want to use 32 GB of my RAM for caching. You need to put the number in bytes. Use [This Website](https://convertermaniacs.com/gigabyte-to-byte/convert-32-gb-to-bytes.html) to convert whatever GB you want to bytes
+I want to replace `6717177856` to `17179869184` since I want to use 16 GB of my RAM for caching. You need to put the number in bytes. Use [This Website](https://convertermaniacs.com/gigabyte-to-byte/convert-32-gb-to-bytes.html) to convert whatever GB you want to bytes
 
 ```sh
-options zfs zfs_arc_max=34359738368
+options zfs zfs_arc_max=17179869184
 ```
 
 Apply the changes
@@ -103,7 +103,7 @@ sudo vim /etc/fstab
 
 ```sh
 # Proxmox nfs Mount
-<Proxmox_IP>:/pool /mnt/hdds nfs4 defaults,rsize=1048576,wsize=1048576,timeo=14,intr 0 0
+<Proxmox_IP>:/pool  /mnt/hdds nfs4 defaults,rsize=1048576,wsize=1048576,timeo=14,intr 0 0
 ```
 
 5. Verify the Mount
@@ -112,4 +112,22 @@ sudo vim /etc/fstab
 df -h
 ```
 
+## Test ZFS HDDs Speed
 
+Create `testing` folder
+
+```sh
+sudo mkdir /mnt/hdds/testing/
+```
+
+Test write Speeds
+
+```sh
+dd if=/dev/zero of=/mnt/hdds/testing/testfile bs=1G count=1 oflag=direct
+```
+
+Test read speeds
+
+```sh
+dd if=/mnt/hdds/testing/testfile of=/dev/null bs=1G iflag=direct
+```

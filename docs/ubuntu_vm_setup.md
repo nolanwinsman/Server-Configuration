@@ -9,6 +9,7 @@ Then went through basic Ubuntu Server setup making sure to enable openssh.
 
 ```sh
 apt install vim
+apt install tree
 ```
 
 ## Allocate Remaining SSD Space
