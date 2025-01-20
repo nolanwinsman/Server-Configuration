@@ -17,6 +17,4 @@ This server setup is intended for legal use only. The use of this system to down
 
 ## 4: [Setup Docker on Ubuntu VM](docs/docker_setup.md)
 
-## 5: [Qbittorrent Docker Setup with VPN](docs/qbittorrent.md)
-
-## 6: [Plex Setup](docs/plex.md)
+## 5: [Ezarr](docs/ezarr.md)
