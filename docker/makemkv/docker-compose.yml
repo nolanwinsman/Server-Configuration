@@ -8,7 +8,8 @@ services:
       - "5800:5800"          # Web UI accessible via port 5800
     volumes:
       - /mnt/ssd/config/makemkv:/config:rw  # Configuration files
-      - /mnt/iso:/storage:ro               # Read-only access to ISO files
+      #- /mnt/iso:/storage:ro               # Read-only access to ISO files
+      - /mnt/ssd/config/makemkv/storage:/storage:rw          
       - /mnt/ssd/config/makemkv/output:/output:rw # Write access for output files
     #devices:
       #- "/dev/sr0:/dev/sr0"  # Optical drive (Blu-ray)
