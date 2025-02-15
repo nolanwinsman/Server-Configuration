@@ -10,9 +10,9 @@ services:
       - /mnt/ssd/config/makemkv:/config:rw  # Configuration files
       - /mnt/iso:/storage:ro               # Read-only access to ISO files
       - /mnt/ssd/config/makemkv/output:/output:rw # Write access for output files
-    devices:
-      - "/dev/sr0:/dev/sr0"  # Optical drive (Blu-ray)
-      - "/dev/sg2:/dev/sg2"  # Optional second optical drive (if applicable)
+    #devices:
+      #- "/dev/sr0:/dev/sr0"  # Optical drive (Blu-ray)
+      #- "/dev/sg2:/dev/sg2"  # Optional second optical drive (if applicable)
     environment:
       - PUID=1000             # User ID (adjust based on your system)
       - PGID=1000             # Group ID (adjust based on your system)
