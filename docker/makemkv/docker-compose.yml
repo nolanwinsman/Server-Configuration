@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  makemkv:
+    container_name: makemkv
+    image: jlesage/makemkv
+    ports:
+      - "5800:5800"          # Web UI accessible via port 5800
+    volumes:
+      - /docker/appdata/makemkv:/config:rw  # Configuration files
+      - /mnt/iso:/storage:ro               # Read-only access to ISO files
+      - /home/user/MakeMKV/output:/output:rw # Write access for output files
+    devices:
+      - "/dev/sr0:/dev/sr0"  # Optical drive (Blu-ray)
+      - "/dev/sg2:/dev/sg2"  # Optional second optical drive (if applicable)
+    environment:
+      - PUID=1000             # User ID (adjust based on your system)
+      - PGID=1000             # Group ID (adjust based on your system)
+    restart: unless-stopped    # Automatically restart the container unless stopped manually
