@@ -21,7 +21,7 @@ for file in "$ISO_PATH"/*; do
 
   echo "Checking $file for subtitles..."
 
-  # Use ffmpeg to check for subtitle streams in the file
+  # Use ffmpeg to identify subtitle streams in the file
   subtitle_count=0
   ffmpeg -i "$file" 2>&1 | grep -i "Subtitle" | while read -r line; do
     # Extract subtitle stream index (e.g., Stream #0:2)
@@ -36,7 +36,7 @@ for file in "$ISO_PATH"/*; do
       echo "Extracting subtitle track $subtitle_count from $file..."
 
       # Extract the subtitle track to an .srt file in the current directory
-      ffmpeg -i "$file" -map 0:s:"$stream_index" "$output_filename"
+      ffmpeg -i "$file" -map 0:s:"$stream_index" -c:s srt "$output_filename"
       echo "Subtitle extracted to: $output_filename"
     fi
   done
