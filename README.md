@@ -18,3 +18,9 @@ This server setup is intended for legal use only. The use of this system to down
 ## 4: [Setup Docker on Ubuntu VM](docs/docker_setup.md)
 
 ## 5: [Ezarr](docs/ezarr.md)
+
+## 6: [MakeMKV](docker/makemkv/docker-compose.yml)
+
+# Misc Guides
+
+### [Manually Adding Movie/TV to Plex/Jellyfin](docs/manual_media_add.md)
