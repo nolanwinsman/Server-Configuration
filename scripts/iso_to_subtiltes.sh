@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Get the current working directory where the script is being run
-OUTPUT_DIR="$(pwd)"
-
 # Define the path to the BDMV/STREAM directory
 ISO_PATH="/mnt/iso/BDMV/STREAM"
 
@@ -12,37 +9,32 @@ if [ ! -d "$ISO_PATH" ]; then
   exit 1
 fi
 
-# Loop through each file in the directory
-for file in "$ISO_PATH"/*; do
-  # Skip directories
-  if [ -d "$file" ]; then
-    continue
-  fi
-
+# Loop through each .m2ts file in the directory
+for file in "$ISO_PATH"/*.m2ts; do
   echo "Checking $file for subtitles..."
 
-  # Use ffmpeg to identify subtitle streams in the file
-  subtitle_count=0
-  ffmpeg -i "$file" 2>&1 | grep -i "Subtitle" | while read -r line; do
-    # Extract subtitle stream index (e.g., Stream #0:2)
-    stream_index=$(echo "$line" | sed -n 's/.*Stream #0:\([0-9]\+\): Subtitle.*/\1/p')
+  # Get ffmpeg output for stream details
+  ffmpeg_output=$(ffmpeg -i "$file" 2>&1)
 
-    # If a subtitle stream is found, extract it
-    if [ -n "$stream_index" ]; then
-      subtitle_count=$((subtitle_count + 1))
-      # Get the base filename (without path) for output naming
-      base_filename=$(basename "$file")
-      output_filename="${OUTPUT_DIR}/${base_filename}_subtitle${subtitle_count}.srt"
-      echo "Extracting subtitle track $subtitle_count from $file..."
+  # Look for subtitle streams in the output
+  subtitle_count=$(echo "$ffmpeg_output" | grep -i "Subtitle" | wc -l)
 
-      # Extract the subtitle track to an .srt file in the current directory
-      ffmpeg -i "$file" -map 0:s:"$stream_index" -c:s srt "$output_filename"
+  if [ "$subtitle_count" -gt 0 ]; then
+    echo "Subtitles found in: $file"
+    
+    # Extract subtitle streams (if any)
+    stream_indexes=$(echo "$ffmpeg_output" | grep -i "Subtitle" | sed -n 's/.*Stream #0:\([0-9]\+\): Subtitle.*/\1/p')
+    
+    # For each subtitle stream, extract it as an .srt file
+    count=1
+    for index in $stream_indexes; do
+      output_filename="${file%.m2ts}_subtitle${count}.srt"
+      echo "Extracting subtitle stream $index from $file..."
+      ffmpeg -i "$file" -map 0:s:$index -c:s srt "$output_filename"
       echo "Subtitle extracted to: $output_filename"
-    fi
-  done
-
-  # If no subtitles were found
-  if [ "$subtitle_count" -eq 0 ]; then
+      count=$((count + 1))
+    done
+  else
     echo "No subtitles found in: $file"
   fi
 
