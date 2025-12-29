@@ -10,6 +10,9 @@ Then went through basic Ubuntu Server setup making sure to enable openssh.
 ```sh
 apt install vim
 apt install tree
+apt install unrar
+apt install p7zip-full
+apt install ffmpeg
 ```
 
 ## Allocate Remaining SSD Space
